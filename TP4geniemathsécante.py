@@ -18,14 +18,18 @@ def secante():
     nitermax=float(input("Maximum d'itération ? "))
 
     i=0
-    while i < nitermax and abs(x1-x0) > 0 :
+    listxn=[]
+    listen=[]
+    while i < nitermax and abs(x1-x0) > err :
+        listen.append(abs(x1-x0))
         x2= (x0*f(x1)-x1*f(x0))/(f(x1)-f(x0))
         x0=x1
         x1=x2
         i=i+1
-    return (x2)
+        listxn.append(x2)
+    return (x2,i,listxn,listen)
 
 
 print(secante())
 
-#Fonctionnent si soit x0 soit x1 est positif et que les deux sont très proches et erreur se choisi pas
+#Fonctionne si soit x0 soit x1 est positif et que les deux sont très proches
