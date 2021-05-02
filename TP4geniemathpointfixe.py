@@ -5,6 +5,7 @@ Created on Mon Mar  1 10:34:29 2021
 """
 
 from math import log
+import matplotlib.pyplot as p
 
 def g(x):
     s=(7-4*log(x))/3 #Modifier la fonction ici
@@ -21,6 +22,7 @@ def pointfixe(x) :
     erreur=g(xold)-xold
     listxn=[]
     listen=[]
+    listi=[]
 
     while abs(erreur)>epsilon and n<Nitermax :
         listen.append(abs(erreur))
@@ -29,6 +31,12 @@ def pointfixe(x) :
         erreur=xnew-xold
         xold=xnew
         listxn.append(xold)
+        listi.append(float(n))
+        
+    p.figure(figsize=(5,5), dpi=100)
+    p.semilogy(listi, listen)
+    p.savefig("En=f(n)")
+    p.show()
     return(xnew,n,listxn,listen)
 
 print(pointfixe(X0))
