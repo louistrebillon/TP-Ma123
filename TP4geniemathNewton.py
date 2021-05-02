@@ -5,6 +5,7 @@ Created on Mon Mar  1 10:34:29 2021
 """
 
 from math import exp
+import matplotlib.pyplot as p
 
 def f(x) :
     s1= x*exp(x)-7  #Modifier la fonction ici
@@ -29,6 +30,7 @@ def Newton(x) :
     erreur=g(xold)-xold
     listen=[]
     listxn=[]
+    listi=[]
 
     while abs(erreur)>epsilon and n<Nitermax :
         listen.append(abs(erreur))
@@ -37,6 +39,13 @@ def Newton(x) :
         erreur=xnew-xold
         xold=xnew
         listxn.append(xold)
+        listi.append(float(n))
+        
+    p.figure(figsize=(5,5), dpi=100)
+    p.semilogy(listi, listen)
+    p.savefig("En=f(n)")
+    p.show()
+    
     return(xnew,n,listxn,listen)
 
 print(Newton(X0))
